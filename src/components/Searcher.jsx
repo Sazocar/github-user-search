@@ -1,9 +1,17 @@
+import { useState } from 'react'
 import { IconButton, Stack, TextField } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
+import './Search.css'
 
-const Searcher = () => {
+const Searcher = ({ setInputUser }) => {
+  const [valueInput, setValueInput] = useState('')
+
   const handleSubmit = () => {
-    
+    setInputUser(valueInput)
+  }
+
+  const onSearchValueChange = (e) => {
+    setValueInput(e.target.value)
   }
 
   return (
@@ -24,13 +32,17 @@ const Searcher = () => {
         sx={{
           width: '90%',
         }}
+        onChange={onSearchValueChange}
+        value={valueInput}
       />
       <IconButton
+        className='Searcher'
         type='button'
         sx={{
           p: '10px',
           left: '-38px',
         }}
+        onClick={handleSubmit}
       >
         <SearchIcon />
       </IconButton>

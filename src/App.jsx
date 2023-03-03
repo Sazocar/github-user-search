@@ -1,11 +1,21 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Container } from '@mui/material'
 import { Searcher } from './components/Searcher'
+import { getGithubUser } from './services/users'
 import './App.css'
 
 function App() {
   const [inputUser, setInputUser] = useState('octocat')
   const [userState, setUserState] = useState(inputUser)
+
+  const getUser = async (user) => {
+    const githubUser = await getGithubUser(user)
+    console.log(githubUser)
+  }
+
+  useEffect(() => {
+    getUser(inputUser)
+  }, [])
 
   return (
     <Container
@@ -20,12 +30,9 @@ function App() {
         alignItems: 'center',
       }}
     >
-      <Searcher inputUser={inputUser} setInputUser={setInputUser} />
+      <Searcher setInputUser={setInputUser} />
     </Container>
   )
 }
 
 export default App
-
-
-
