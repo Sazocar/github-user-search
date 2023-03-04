@@ -9,3 +9,4 @@ export const getGithubUser = async (user) => {
 
   return payload
 }
+

@@ -1,14 +1,24 @@
 import { useState } from 'react'
 import { IconButton, Stack, TextField } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
-import './Search.css'
 
 const Searcher = ({ setInputUser }) => {
   const [valueInput, setValueInput] = useState('')
 
   const handleSubmit = () => {
     setInputUser(valueInput)
+    setValueInput('')
   }
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault()
+      setInputUser(valueInput)
+      setValueInput('')
+    }
+  }
+
+  // Make enter button work as well to search the user
 
   const onSearchValueChange = (e) => {
     setValueInput(e.target.value)
@@ -17,9 +27,11 @@ const Searcher = ({ setInputUser }) => {
   return (
     <Stack
       direction='row'
+      justifyContent='center'
+      alignContent='center'
       sx={{
-        marginTop: '30px',
-        width: '50%',
+        marginTop: '46px',
+        width: '100%',
       }}
     >
       <TextField
@@ -30,17 +42,17 @@ const Searcher = ({ setInputUser }) => {
         placeholder='octocat'
         size='small'
         sx={{
-          width: '90%',
+          width: '50%',
         }}
         onChange={onSearchValueChange}
         value={valueInput}
+        onKeyDown={handleKeyDown}
       />
       <IconButton
         className='Searcher'
         type='button'
         sx={{
           p: '10px',
-          left: '-38px',
         }}
         onClick={handleSubmit}
       >
