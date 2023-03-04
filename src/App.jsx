@@ -29,8 +29,6 @@ function App() {
     }
   }
 
-  console.log(userState)
-
   useEffect(() => {
     getUser(inputUser)
   }, [inputUser])

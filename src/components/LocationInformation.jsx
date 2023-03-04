@@ -42,7 +42,7 @@ const LocationInformation = ({ userState }) => {
         </Stack>
       </Grid>
       <Grid item xs={6}>
-        <Stack direction='row' spacing={1}>
+        <Stack direction='row' spacing={1} alignItems='center'>
           <LanguageIcon />
           <ThemeProvider theme={theme}>
             <Typography className='blog'>
