@@ -1,10 +1,23 @@
-import { Grid, Stack, Typography } from '@mui/material'
+import { createTheme, Grid, Stack, ThemeProvider, Typography } from '@mui/material'
 import LocationOnIcon from '@mui/icons-material/LocationOn'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import LanguageIcon from '@mui/icons-material/Language'
 import BusinessIcon from '@mui/icons-material/Business'
 
 const LocationInformation = ({ userState }) => {
+
+  const theme = createTheme({
+    components: {
+      MuiTypography: {
+        styleOverrides: {
+          root: {
+            fontSize: '0.8rem',
+          },
+        },
+      },
+    },
+  });
+
   const { location, twitter_username, blog, company } = userState
 
   return (
@@ -31,15 +44,17 @@ const LocationInformation = ({ userState }) => {
       <Grid item xs={6}>
         <Stack direction='row' spacing={1}>
           <LanguageIcon />
-          <Typography>
-            {blog ? (
-              <a target='__blank' href={blog}>
-                {blog}
-              </a>
-            ) : (
-              'Not Available'
-            )}
-          </Typography>
+          <ThemeProvider theme={theme}>
+            <Typography className='blog'>
+              {blog ? (
+                <a target='__blank' href={blog}>
+                  {blog}
+                </a>
+              ) : (
+                'Not Available'
+              )}
+            </Typography>
+          </ThemeProvider>
         </Stack>
       </Grid>
       <Grid item xs={6}>
