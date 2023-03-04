@@ -8,7 +8,7 @@ import { toast, Toaster } from 'react-hot-toast'
 import './App.css'
 
 function App() {
-  const [inputUser, setInputUser] = useState('octocat')
+  const [inputUser, setInputUser] = useState('sazocar')
   const [userState, setUserState] = useState(inputUser)
   const [notFound, setNotFound] = useState(false)
 
